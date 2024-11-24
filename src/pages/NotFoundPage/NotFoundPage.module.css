@@ -1,0 +1,17 @@
+.box {
+  text-align: center;
+
+  .text {
+    color: red;
+    font-size: 40px;
+    font-weight: 700;
+  }
+  .link {
+    color: blue;
+    font-size: 40px;
+    font-weight: 400;
+    &:hover {
+      color: rgb(7, 136, 18);
+    }
+  }
+}
