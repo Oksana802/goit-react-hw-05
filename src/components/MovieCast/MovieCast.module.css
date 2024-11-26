@@ -1,0 +1,17 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px;
+  list-style: none;
+}
+
+.photo {
+  width: 100px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.text {
+  padding: 10px;
+}

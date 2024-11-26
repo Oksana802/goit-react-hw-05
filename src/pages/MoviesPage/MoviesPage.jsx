@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { fetchSearchMovie } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
-import Loader from "../../components/Loader/loader";
+// import Loader from "../../components/Loader/loader";
 import { useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query") ?? "";
 
@@ -18,13 +19,11 @@ const MoviesPage = () => {
 
     const getData = async () => {
       try {
-        setIsLoading(true);
+        // setIsLoading(true);
         const searchMovies = await fetchSearchMovie(query);
         setMovies(searchMovies);
       } catch (error) {
-        console.error("Failed to fetch movies:", error);
-      } finally {
-        setIsLoading(false);
+        toast.error("Failed to fetch movies:!", error);
       }
     };
 
@@ -40,7 +39,7 @@ const MoviesPage = () => {
   return (
     <div>
       <SearchBar onChangeQuery={handleChangeQuery} />
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
       {movies.length > 0 && <MovieList movies={movies} />}
     </div>
   );

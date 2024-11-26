@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovieReviews } from "../../services/api";
+import toast from "react-hot-toast";
+import s from "./MovieReviews.module.css";
 
 const MovieReviews = () => {
   const { movieId } = useParams();
@@ -8,19 +10,23 @@ const MovieReviews = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const reviewsData = await fetchMovieReviews(movieId);
-      setReviews(reviewsData);
+      try {
+        const reviewsData = await fetchMovieReviews(movieId);
+        setReviews(reviewsData);
+      } catch (error) {
+        toast.error("Oops, something went wrong!", error);
+      }
     };
 
     getData();
   }, [movieId]);
 
-  if (!reviews.length) return <p>No reviews available.</p>;
+  if (!reviews.length) return <p className={s.text}>No reviews available.</p>;
 
   return (
-    <ul>
+    <ul className={s.box}>
       {reviews.map(({ id, author, content }) => (
-        <li key={id}>
+        <li className={s.post} key={id}>
           <h4>{author}</h4>
           <p>{content}</p>
         </li>

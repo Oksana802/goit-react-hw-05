@@ -1,5 +1,6 @@
 .box {
   text-align: center;
+  background-color: aqua;
 
   .text {
     color: red;
